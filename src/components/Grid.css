@@ -1,0 +1,23 @@
+.grid-container {
+    /* padding: 20px;
+    display: grid;
+    grid-template-columns: repeat( auto-fit, minmax(450px, 1fr));
+    grid-template-rows: repeat( auto-fit, minmax(150px, 1fr));
+    gap: 0px; */
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 20px;
+}
+
+.search {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: left;
+    box-sizing: border-box;
+    margin: 50px;
+}

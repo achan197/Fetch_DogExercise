@@ -1,0 +1,20 @@
+.page {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.font_large {
+  font-size: medium;
+  font-weight: 500;
+}
+
+.page_number {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.page_button {
+  padding: 5px;
+  width: 100px;
+}
