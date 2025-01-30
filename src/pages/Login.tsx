@@ -35,12 +35,11 @@ const Login = ({
         }
       );
       // on success, go to home page
-      console.log(response);
-      const token = "templogintoken";
-      onLogin(token);
       if (response.status === 200) {
         console.log("login success!");
       }
+      const token = "templogintoken";
+      onLogin(token);
     } catch (error) {
       console.log("failed to login", error);
     }

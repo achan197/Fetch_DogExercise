@@ -29,27 +29,31 @@ const Grid = ({
     <div className="grid-container">
       {/* If generic, do a check if its a dog object before calling Dog card
       Could also do the check in Card and make card  generic */}
-      {itemList.map((item) => {
-        const isFav = favIds.includes(item.id);
-        if (isFav) {
-          return (
-            <DogCard
-              key={item.id}
-              item={item}
-              isFav={isFav}
-              onClick={() => onClick(item.id)}
-            ></DogCard>
-          );
-        } else {
-          return (
-            <DogCard
-              key={item.id}
-              item={item}
-              onClick={() => onClick(item.id)}
-            ></DogCard>
-          );
-        }
-      })}
+      {itemList ? (
+        itemList.map((item) => {
+          const isFav = favIds.includes(item.id);
+          if (isFav) {
+            return (
+              <DogCard
+                key={item.id}
+                item={item}
+                isFav={isFav}
+                onClick={() => onClick(item.id)}
+              ></DogCard>
+            );
+          } else {
+            return (
+              <DogCard
+                key={item.id}
+                item={item}
+                onClick={() => onClick(item.id)}
+              ></DogCard>
+            );
+          }
+        })
+      ) : (
+        <span>Error retrieving dogs</span>
+      )}
     </div>
   );
 };

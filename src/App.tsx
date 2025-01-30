@@ -14,17 +14,33 @@ import Footer from "./components/Footer";
 import React, { useContext, useEffect, useState } from "react";
 import Match from "./pages/Match";
 import { AuthContext } from "./context/authContext";
+import axios from "axios";
 
 const App = () => {
-  const [isAuth, setIsAuth] = useState(false);
+  const [isAuth, setIsAuth] = useState<boolean>(false);
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    setIsAuth(!!token);
+    const cookies = document.cookie.split(";");
+    let cookieFound = false;
+    cookies.forEach((cookie) => {
+      if (cookie.trim().indexOf("access_cookie=") === 0) {
+        const cookieValue = cookie.substring("access_cookie=".length);
+        if (cookieValue === "access_string") {
+          cookieFound = true;
+        }
+      }
+    });
+    console.log(cookieFound);
+    setIsAuth(!!cookieFound);
   }, []);
 
   const handleLogin = (token: string) => {
-    localStorage.setItem("token", token);
+    const name = "access_cookie";
+    const value = "access_string";
+    const date = new Date();
+    date.setTime(date.getTime() + 60 * 60 * 1000);
+    const expires = "expires=" + date.toUTCString();
+    document.cookie = `${name}=${value}; ${expires}; path=/; SameSite=Lax;`;
     setIsAuth(true);
   };
 
@@ -70,7 +86,7 @@ const App = () => {
     // },
     {
       path: "/login",
-      element: <Login onLogin={() => handleLogin} isAuth={isAuth} />,
+      element: <Login onLogin={handleLogin} isAuth={isAuth} />,
     },
   ]);
 
